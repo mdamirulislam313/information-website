@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rul Islam - Freelancer Portfolio</title>
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Roboto&display=swap" rel="stylesheet" />
+  
+  <style>
+    /* Reset & Base */
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #f5f7fa;
+      color: #222;
+      transition: background-color 0.3s, color 0.3s;
+      min-height: 100vh;
+    }
+    h1, h2 {
+      font-family: 'Playfair Display', serif;
+      margin-bottom: 0.5rem;
+    }
+    a {
+      color: #2563eb;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    a:hover {
+      color: #1e40af;
+    }
+    .container {
+      max-width: 960px;
+      margin: auto;
+      padding: 1rem;
+    }
+
+    /* Header & Hero Video */
+    header {
+      position: relative;
+      overflow: hidden;
+      height: 60vh;
+      color: white;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background: #111;
+    }
+    header video {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      z-index: -1;
+      transform: translate(-50%, -50%);
+      filter: brightness(0.5);
+      object-fit: cover;
+    }
+    header img {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      border: 4px solid rgba(255,255,255,0.7);
+      margin: 0 auto 1rem auto;
+      object-fit: cover;
+      box-shadow: 0 0 15px rgba(0,0,0,0.3);
+    }
+    header h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      text-shadow: 0 0 8px rgba(0,0,0,0.7);
+    }
+    header p {
+      font-size: 1.2rem;
+      font-weight: 500;
+      text-shadow: 0 0 5px rgba(0,0,0,0.7);
+    }
+
+    /* Sections */
+    section {
+      padding: 3rem 1rem;
+    }
+    section h2 {
+      font-size: 2rem;
+      color: #111;
+      margin-bottom: 1rem;
+      border-bottom: 3px solid #2563eb;
+      display: inline-block;
+    }
+    section p, section li {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #444;
+    }
+    ul {
+      list-style: disc inside;
+      margin-left: 1rem;
+    }
+
+    /* Portfolio grid */
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+      gap: 1rem;
+    }
+    .portfolio-card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+    .portfolio-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    }
+    .portfolio-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      display: block;
+    }
+    .portfolio-card .desc {
+      padding: 1rem;
+      font-weight: 600;
+      color: #111;
+    }
+
+    /* Testimonials */
+    .testimonial {
+      background: #2563eb;
+      color: white;
+      border-radius: 10px;
+      padding: 1.5rem;
+      font-style: italic;
+      max-width: 600px;
+      margin: 1rem auto;
+      box-shadow: 0 4px 10px rgba(37,99,235,0.3);
+    }
+
+    /* Contact */
+    .contact-info a {
+      display: inline-block;
+      margin-top: 0.5rem;
+      font-weight: 600;
+    }
+
+    /* Dark mode */
+    body.dark {
+      background-color: #121212;
+      color: #ddd;
+    }
+    body.dark section {
+      background: #1e1e1e;
+      color: #ddd;
+    }
+    body.dark section h2 {
+      color: #3b82f6;
+      border-color: #3b82f6;
+    }
+    body.dark a {
+      color: #60a5fa;
+    }
+    body.dark a:hover {
+      color: #3b82f6;
+    }
+    body.dark .portfolio-card {
+      background: #292929;
+      box-shadow: 0 4px 8px rgba(255,255,255,0.1);
+    }
+    body.dark .testimonial {
+      background: #3b82f6;
+      box-shadow: 0 4px 10px rgba(59,130,246,0.5);
+    }
+
+    /* Dark mode toggle button */
+    #darkModeToggle {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: #2563eb;
+      border: none;
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 9999px;
+      cursor: pointer;
+      font-weight: 600;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      transition: background 0.3s ease;
+      z-index: 1000;
+    }
+    #darkModeToggle:hover {
+      background: #1e40af;
+    }
+
+    /* Responsive typography */
+    @media (max-width: 640px) {
+      header h1 {
+        font-size: 2.2rem;
+      }
+      header p {
+        font-size: 1rem;
+      }
+      section h2 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Dark mode toggle বাটন -->
+  <button id="darkModeToggle" aria-label="Toggle dark mode">Dark Mode</button>
+
+  <!-- Header with Video Background -->
+  <header role="banner" aria-label="Introductory section with video background">
+    <!-- TODO: এখানে নিজের ভিডিও URL বসান -->
+    <video autoplay muted loop playsinline aria-hidden="true" tabindex="-1" class="w-full h-auto">
+  <source src="https://cdn.coverr.co/videos/coverr-laptop-working-5401/1080p.mp4" type="video/mp4"/>
+  Your browser does not support the video tag.
+</video>
+
+    <!-- TODO: এখানে নিজের প্রোফাইল ছবি URL বসান -->
+    <img  src="New folder/IMG-20250623-WA0005-Recovered-Recovered.png" alt="Rul Islam Profile Picture" />
+
+    <h1> AMIRUL ISLAM</h1>
+    <p>Freelancer | Calligraphy & Microsoft Office Specialist</p>
+  </header>
+
+  <main class="container" role="main">
+
+    <!-- Home / Welcome -->
+    <section id="home" tabindex="0" aria-label="Welcome section">
+      <h2>Welcome!</h2>
+      <p>
+        I am Amirul Islam, a passionate and skilled freelancer experienced in Microsoft Office (Word, Excel, PowerPoint) and elegant calligraphy design.
+      </p>
+    </section>
+
+    <!-- About Me -->
+    <section id="about" tabindex="0" aria-label="About me section">
+      <h2>About Me</h2>
+      <p>
+        I am a teacher of a Madrasa who has also developed digital skills to work in the freelancing world. Alongside my Islamic education, I have built proficiency in Microsoft Office tools and calligraphy designing. I believe in punctuality and honesty in every project I undertake.
+      </p>
+    </section>
+
+    <!-- Services -->
+    <section id="services" tabindex="0" aria-label="Services offered section">
+      <h2>My Services</h2>
+      <ul>
+        <li>Microsoft Word Formatting & Typing</li>
+        <li>Microsoft Excel Data Entry & Charting</li>
+        <li>PowerPoint Presentations</li>
+        <li>Arabic/Bengali/English Calligraphy Design</li>
+      </ul>
+    </section>
+<div class="grid grid-template-columns">
+    <!-- Portfolio 1 -->
+    <section id="portfolio" tabindex="0" aria-label="Portfolio section">
+      <h2>Portfolio / My Work</h2>
+      <p>Below are some examples of my work:</p>
+      <div class="portfolio-grid">
+        <!-- TODO: এখানে নিজের ওয়ার্ড প্রজেক্টের ছবি ও বর্ণনা বসান -->
+        <div class="portfolio-card" tabindex="0" role="img" aria-label="Sample Word project image">
+          <img src="ms/ms 2.png"Word Work Sample" />
+          <div class="desc">Microsoft Word Project</div>
+        </div>
+        <!-- TODO: এখানে নিজের এক্সেল প্রজেক্টের ছবি ও বর্ণনা বসান -->
+        <div class="portfolio-card" tabindex="0" role="img" aria-label="Sample Excel project image">
+          <img src="ms/ms 1 .png" alt="Excel Work Sample" />
+          <div class="desc">Microsoft Excel Project</div>
+        </div>
+        <!-- TODO: এখানে নিজের ক্যালিগ্রাফি কাজের ছবি ও বর্ণনা বসান -->
+        <div class="portfolio-card" tabindex="0" role="img" aria-label="Sample Calligraphy project image">
+          <img src="ms/ms 4.webp" alt="Calligraphy Work Sample" />
+          <div class="desc">Calligraphy Design</div>
+        </div>
+      </div>
+    </section>
+    <!-- portfolio 2 -->
+    <section id="portfolio" tabindex="0" aria-label="Portfolio section">
+      <h2>Portfolio / My Work</h2>
+      <p>Below are some examples of my work:</p>
+      <div class="portfolio-grid">
+        <!-- TODO: এখানে নিজের ওয়ার্ড প্রজেক্টের ছবি ও বর্ণনা বসান -->
+        <div class="portfolio-card" tabindex="0" role="img" aria-label="Sample Word project image">
+          <img src="excel/excel 0.jpg"Word Work Sample" />
+          <div class="desc">Microsoft Word Project</div>
+        </div>
+        <!-- TODO: এখানে নিজের এক্সেল প্রজেক্টের ছবি ও বর্ণনা বসান -->
+        <div class="portfolio-card" tabindex="0" role="img" aria-label="Sample Excel project image">
+          <img src="excel/excel 1 .webp" alt="Excel Work Sample" />
+          <div class="desc">Microsoft Excel Project</div>
+        </div>
+        <!-- TODO: এখানে নিজের ক্যালিগ্রাফি কাজের ছবি ও বর্ণনা বসান -->
+        <div class="portfolio-card" tabindex="0" role="img" aria-label="Sample Calligraphy project image">
+          <img src="excel/excel 3 .webp" alt="Calligraphy Work Sample" />
+          <div class="desc">Calligraphy Design</div>
+        </div>
+      </div>
+    </section>
+    <!-- portfolio 3 -->
+    <section id="portfolio" tabindex="0" aria-label="Portfolio section">
+      <h2>Portfolio / My Arabic calligraphy</h2>
+      <p>Below are some examples of my work:</p>
+      <div class="portfolio-grid">
+        <!-- TODO: এখানে নিজের ওয়ার্ড প্রজেক্টের ছবি ও বর্ণনা বসান -->
+        <div class="portfolio-card" tabindex="0" role="img" aria-label="Sample Word project image">
+          <img src="calografy/calografy 8.jpg"Word Work Sample" />
+          <div class="desc">Microsoft Word Project</div>
+        </div>
+        <!-- TODO: এখানে নিজের এক্সেল প্রজেক্টের ছবি ও বর্ণনা বসান -->
+        <div class="portfolio-card" tabindex="0" role="img" aria-label="Sample Excel project image">
+          <img src="calografy/calografy 9.jpg" alt="Excel Work Sample" />
+          <div class="desc">Microsoft Excel Project</div>
+        </div>
+        <!-- TODO: এখানে নিজের ক্যালিগ্রাফি কাজের ছবি ও বর্ণনা বসান -->
+        <div class="portfolio-card" tabindex="0" role="img" aria-label="Sample Calligraphy project image">
+          <img src="calografy/calografy 11.jpg" alt="Calligraphy Work Sample" />
+          <div class="desc">Calligraphy Design</div>
+        </div>
+      </div>
+      
+      <div class="portfolio-grid">
+        <!-- TODO: এখানে নিজের ওয়ার্ড প্রজেক্টের ছবি ও বর্ণনা বসান -->
+        <div class="portfolio-card" tabindex="0" role="img" aria-label="Sample Word project image">
+          <img src="calografy/calografy 1 .jpg"Word Work Sample" />
+          <div class="desc">Microsoft Word Project</div>
+        </div>
+        <!-- TODO: এখানে নিজের এক্সেল প্রজেক্টের ছবি ও বর্ণনা বসান -->
+        <div class="portfolio-card" tabindex="0" role="img" aria-label="Sample Excel project image">
+          <img src="calografy/calografy 2 .jpg" alt="Excel Work Sample" />
+          <div class="desc">Microsoft Excel Project</div>
+        </div>
+        <!-- TODO: এখানে নিজের ক্যালিগ্রাফি কাজের ছবি ও বর্ণনা বসান -->
+        <div class="portfolio-card" tabindex="0" role="img" aria-label="Sample Calligraphy project image">
+          <img src="calografy/calografy 3.jpg" alt="Calligraphy Work Sample" />
+          <div class="desc">Calligraphy Design</div>
+        </div>
+      </div>
+    </section>
+    </div>
+
+    <!-- Testimonials -->
+    <section id="testimonials" tabindex="0" aria-label="Client testimonials section">
+      <h2>Client Testimonials</h2>
+      <div class="testimonial">
+        "Rul Bhai delivered the work on time and maintained excellent quality. Highly recommended!" – A Happy Client
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" tabindex="0" aria-label="Contact information section Footer section ">
+      <h2>Contact Me</h2>
+      <p class="contact-info">
+        Email: <a href="mailto:amirulislambd@gmail.com">amirulislambd@gmail.com</a>
+      </p>
+      <p class="contact-info">
+        Fiverr: <a href="#" id="fiverrLink"> <!-- TODO: এখানে নিজের Fiverr প্রোফাইল লিংক বসান -->Your Fiverr Profile</a>
+      </p>
+    </section>
+
+  </main>
+
+  <footer role="contentinfo" aria-label="Footer">
+    <p style="text-align:center; padding: 1rem 0; color:#888;">&copy; 2025 Rul Islam. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Dark mode toggle ফাংশন
+    const toggleBtn = document.getElementById('darkModeToggle');
+    const body = document.body;
+
+    // আগের পছন্দ অনুসারে ডার্ক মোড চালু রাখা
+    if(localStorage.getItem('darkMode') === 'enabled'){
+      body.classList.add('dark');
+      toggleBtn.textContent = 'Light Mode';
+    }
+
+    toggleBtn.addEventListener('click', () => {
+      body.classList.toggle('dark');
+      if(body.classList.contains('dark')){
+        toggleBtn.textContent = 'Light Mode';
+        localStorage.setItem('darkMode', 'enabled');
+      } else {
+        toggleBtn.textContent = 'Dark Mode';
+        localStorage.setItem('darkMode', 'disabled');
+      }
+    });
+  </script>
+</body>
+</html>
